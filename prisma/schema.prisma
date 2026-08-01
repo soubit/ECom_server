@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model cart {
+  u_id    Int
+  p_id    Int
+  qty     Int?    @default(1)
+  product product @relation(fields: [p_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_p_id")
+  user    user    @relation(fields: [u_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_u_id")
+
+  @@id([u_id, p_id])
+  @@index([p_id], map: "FK_p_id")
+}
+
+model images {
+  id             Int                   @id @default(autoincrement())
+  p_id           Int?
+  image_position images_image_position @default(profile)
+  image_link     String                @db.VarChar(80)
+  created_at     DateTime?             @default(now()) @db.Timestamp(0)
+  updated_at     DateTime?             @default(now()) @db.Timestamp(0)
+  product        product?              @relation(fields: [p_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "images_ibfk_1")
+
+  @@index([p_id], map: "p_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model product {
+  id             Int       @id
+  p_name         String?   @db.VarChar(200)
+  created_at     DateTime? @default(now()) @db.Timestamp(0)
+  updated_at     DateTime? @default(now()) @db.Timestamp(0)
+  short_info     String?   @db.VarChar(100)
+  price          Int?
+  ratings        Decimal?  @db.Decimal(2, 1)
+  information    String?   @db.VarChar(400)
+  nutri_research Json?
+  nutrition      Json?
+  overview       Json?
+  direction      Json?
+  faq            Json?
+  cart           cart[]
+  images         images[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model user {
+  id    Int    @id @default(autoincrement())
+  ph_no String @unique(map: "ph_no") @db.VarChar(10)
+  cart  cart[]
+}
+
+enum images_image_position {
+  profile
+  ad_image
+  faq_image
+  banner_image
+}

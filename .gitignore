@@ -1,0 +1,12 @@
+#For VS Code
+.vscode
+
+#Project files
+.env
+help.txt
+
+
+#Project Dir
+node_modules/
+log/
+/generated/prisma

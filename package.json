@@ -1,0 +1,35 @@
+{
+  "name": "src",
+  "version": "1.0.2",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon app.js",
+    "production": "cross-env NODE_ENV=production node app.js"
+  },
+  "keywords": [],
+  "author": "Souvik Sasmal (Copyright) MaVi",
+  "license": "Agree all termas according to Souvik",
+  "description": "E-Commerce based website for Medical purpose. This is a server only use for api (request & response data should be in application/json) it will connect with every api based application(react,android,ios etc)",
+  "dependencies": {
+    "@prisma/adapter-mariadb": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "bcrypt": "^6.0.0",
+    "connect-redis": "^9.0.0",
+    "cookie-parser": "^1.4.7",
+    "cross-env": "^10.1.0",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.15.2",
+    "nodemon": "^3.1.10",
+    "redis": "^5.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "prisma": "^7.5.0"
+  }
+}

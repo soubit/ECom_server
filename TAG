@@ -1,0 +1,20 @@
+# all TAG value
+
+
+TAG NAME           information
+  (#)        
+===========        ===========
+
+INIT               initilize service
+
+FAILED             Process initilize failed
+
+DATABASE-1         Database Data fetching error
+
+DEFAULT-ERR        By default error cacth by the express. 
+
+MID-VALID          Middleware validity_checkup error
+
+LUA-I              LUA script loaded
+
+LUA-F              LUA Script load failed.
